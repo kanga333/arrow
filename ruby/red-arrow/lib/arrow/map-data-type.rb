@@ -20,6 +20,54 @@ module Arrow
     alias_method :initialize_raw, :initialize
     private :initialize_raw
 
+    # Creates a new {Arrow::MapDataType}.
+    #
+    # @overload initialize(key_type, item_type)
+    #
+    #   @param key_type [Arrow::DataType, Hash, String, Symbol]
+    #     The key data type of the map data type.
+    #
+    #     You can specify data type as a description by `Hash`.
+    #
+    #     See {Arrow::DataType.resolve} how to specify data type
+    #     description.
+    #
+    #   @param item_type [Arrow::DataType, Hash, String, Symbol]
+    #     The item data type of the map data type.
+    #
+    #     You can specify data type as a description by `Hash`.
+    #
+    #     See {Arrow::DataType.resolve} how to specify data type
+    #     description.
+    #
+    #   @example Create a map data type for {0: "Hello", 1: "World"}
+    #     key_type = :int8
+    #     item_type = :string
+    #     Arrow::MapDataType.new(key_type, item_type)
+    #
+    # @overload initialize(description)
+    #
+    #   @param description [Hash] The description of the map data
+    #     type. It must have `:key_type`, `:item_type` values.
+    #
+    #   @option description [Arrow::DataType, Hash, String, Symbol]
+    #     :key_type The key data type of the map data type.
+    #
+    #     You can specify data type as a description by `Hash`.
+    #
+    #     See {Arrow::DataType.resolve} how to specify data type
+    #     description.
+    #
+    #   @option description [Arrow::DataType, Hash, String, Symbol]
+    #     :item_type  The item data type of the map data type.
+    #
+    #     You can specify data type as a description by `Hash`.
+    #
+    #     See {Arrow::DataType.resolve} how to specify data type
+    #     description.
+    #
+    #   @example Create a maap data type for {0: "Hello", 1: "World"}
+    #     Arrow::MapDataType.new(key_type: :int8, item_type: :string)
     def initialize(*args)
       n_args = args.size
       case n_args
