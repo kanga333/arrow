@@ -18,7 +18,11 @@
 module Arrow
   class MapArray
     def get_value(i)
-      {keys[i] => items[i]}
+      value = []
+      super.inject({}) do |result, item|
+        value.append({item["key"] => item["value"]})
+      end
+      value
     end
   end
 end
